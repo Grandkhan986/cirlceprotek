@@ -11,6 +11,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Préchargement de l'image hero critique pour des performances optimales -->
+    <link rel="preload" as="image" href="./images/hero/family-home-security-hero-optimized.jpg" fetchpriority="high">
 </head>
 <body>
     <!-- Header -->
@@ -22,7 +25,7 @@
             <nav class="nav">
                 <ul class="nav-links">
                     <li><a href="#home" class="nav-link active">Home</a></li>
-                    <li><a href="#test" class="nav-link">Test</a></li>
+                    <li><a href="#test" class="nav-link">Quizz</a></li>
                     <li><a href="#newsroom" class="nav-link">Newsroom</a></li>
                     <li><a href="#shop" class="nav-link">Shop now</a></li>
                     <li><a href="#contact" class="nav-link">Contact</a></li>
@@ -40,7 +43,7 @@
     <nav class="mobile-nav">
         <ul class="mobile-nav-links">
             <li><a href="#home" class="mobile-nav-link">Home</a></li>
-            <li><a href="#test" class="mobile-nav-link">Test</a></li>
+            <li><a href="#test" class="mobile-nav-link">Quizz</a></li>
             <li><a href="#newsroom" class="mobile-nav-link">Newsroom</a></li>
             <li><a href="#shop" class="mobile-nav-link">Shop now</a></li>
             <li><a href="#contact" class="mobile-nav-link">Contact</a></li>
@@ -61,7 +64,19 @@
                 </div>
                 <div class="hero-image">
                     <div class="hero-placeholder">
-                        <img src="./images/hero/family-home-security-hero.jpg" alt="Protect Your Family with CircleProtek - Home Security & GPS Tracking Solutions" class="hero-image-photo">
+                        <picture>
+                            <!-- Image optimisée pour différentes tailles d'écran -->
+                            <source media="(max-width: 768px)" srcset="./images/hero/family-home-security-hero-optimized.jpg" width="400" height="300">
+                            <source media="(min-width: 769px)" srcset="./images/hero/family-home-security-hero-optimized.jpg" width="800" height="600">
+                            <img src="./images/hero/family-home-security-hero-optimized.jpg" 
+                                 alt="Protect Your Family with CircleProtek - Home Security & GPS Tracking Solutions" 
+                                 class="hero-image-photo" 
+                                 loading="eager" 
+                                 fetchpriority="high"
+                                 width="800" 
+                                 height="600"
+                                 decoding="async">
+                        </picture>
                     </div>
                 </div>
             </div>
@@ -296,7 +311,7 @@
                         <h4>Quick links</h4>
                         <ul>
                             <li><a href="#home">Home</a></li>
-                            <li><a href="#test">Test</a></li>
+                            <li><a href="#test">Quizz</a></li>
                             <li><a href="#newsroom">Newsroom</a></li>
                             <li><a href="#shop">Shop now</a></li>
                             <li><a href="#contact">Contact</a></li>
@@ -319,6 +334,7 @@
         </div>
     </footer>
 
+    <script src="js/menu.js"></script>
     <script src="script.js"></script>
 </body>
 </html> 
