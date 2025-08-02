@@ -13,27 +13,14 @@ document.addEventListener('DOMContentLoaded', function() {
     // Éléments des boutons produits
     const productButtons = document.querySelectorAll('.product-card .btn');
     
-    // Toggle du menu mobile
-    navToggle.addEventListener('click', function() {
-        navToggle.classList.toggle('active');
-        mobileNav.classList.toggle('active');
-    });
-    
-    // Fermer le menu mobile quand on clique sur un lien
-    mobileNavLinks.forEach(link => {
-        link.addEventListener('click', function() {
-            navToggle.classList.remove('active');
-            mobileNav.classList.remove('active');
-        });
-    });
-    
-    // Fermer le menu mobile quand on clique en dehors
-    document.addEventListener('click', function(event) {
-        if (!navToggle.contains(event.target) && !mobileNav.contains(event.target)) {
-            navToggle.classList.remove('active');
-            mobileNav.classList.remove('active');
-        }
-    });
+    // Menu mobile - déléguer au menu.js si disponible
+    if (window.DynamicMenu) {
+        // Le menu.js gère déjà la navigation mobile
+        console.log('🎯 Navigation mobile gérée par menu.js');
+    } else {
+        // Fallback si menu.js n'est pas chargé
+        setupMobileNavigation(navToggle, mobileNav, mobileNavLinks);
+    }
     
     // Gestion des liens actifs selon la section visible
     function updateActiveNav() {
@@ -306,6 +293,33 @@ document.addEventListener('DOMContentLoaded', function() {
     // Welcome message in console
     console.log('🚀 CircleProtek site loaded successfully!');
     console.log('💻 Developed with ❤️ for optimal user experience');
+    
+    // Fonction de fallback pour la navigation mobile
+    function setupMobileNavigation(navToggle, mobileNav, mobileNavLinks) {
+        if (!navToggle || !mobileNav) return;
+        
+        // Toggle du menu mobile
+        navToggle.addEventListener('click', function() {
+            navToggle.classList.toggle('active');
+            mobileNav.classList.toggle('active');
+        });
+        
+        // Fermer le menu mobile quand on clique sur un lien
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                navToggle.classList.remove('active');
+                mobileNav.classList.remove('active');
+            });
+        });
+        
+        // Fermer le menu mobile quand on clique en dehors
+        document.addEventListener('click', function(event) {
+            if (!navToggle.contains(event.target) && !mobileNav.contains(event.target)) {
+                navToggle.classList.remove('active');
+                mobileNav.classList.remove('active');
+            }
+        });
+    }
     
 });
 
